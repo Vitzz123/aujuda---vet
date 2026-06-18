@@ -58,10 +58,10 @@ export default function App() {
       </header>
 
       <main style={{ padding: '20px' }}>
-        {/*{activeTab === 'pets' && <Pets />}
+        {activeTab === 'pets' && <Pets />}
         {activeTab === 'funcionarios' && <Funcionarios />}
         {activeTab === 'consultas' && <Consultas />}
-        {activeTab === 'relatorio' && <Relatorio />}*/}
+        {activeTab === 'relatorio' && <Relatorio />}  
       </main>
     </div>
   );
