@@ -15,7 +15,7 @@ export default function Pets() {
     localStorage.setItem('listaClinicaPets', JSON.stringify(novaLista));
   };
 
-  // Automação: Define se é exótico ou doméstico sem o usuário digitar
+  // Define o tipo do animal
   const classificarTipo = (especie) => {
     const domesticos = ['Cachorro', 'Gato'];
     return domesticos.includes(especie) ? 'Doméstico' : 'Exótico';
@@ -34,7 +34,7 @@ export default function Pets() {
       id: form.id || Date.now(),
       nome: form.nome,
       especie: especieFinal,
-      tipo: classificarTipo(form.especieSelect), // Salva o tipo automaticamente
+      tipo: classificarTipo(form.especieSelect),
       foto: form.foto
     };
 
@@ -48,7 +48,6 @@ export default function Pets() {
   };
 
   const deletar = (id) => {
-    // Alerta de confirmação solicitado
     if (window.confirm("🚨 TEM CERTEZA? Ao clicar em OK, este animal será apagado do sistema para sempre.")) {
       salvar(pets.filter(p => p.id !== id));
     }
@@ -88,7 +87,7 @@ export default function Pets() {
               <td>{p.foto ? <img src={p.foto} alt="pet" style={{ width: '40px', borderRadius: '50%' }}/> : '🐾'}</td>
               <td>{p.nome}</td>
               <td>{p.especie}</td>
-              <td><strong>{p.tipo}</strong></td> {/* Gerado automaticamente */}
+              <td><strong>{p.tipo}</strong></td> 
               <td>
                 <button onClick={() => setForm({...p, especieSelect: 'Outro', especieOutro: p.especie})}>Editar</button>
                 <button onClick={() => deletar(p.id)}>Excluir</button>

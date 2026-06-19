@@ -20,14 +20,15 @@ export default function Consultas() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lógica para pegar o valor do campo "Outro" se ele for selecionado
+    // Pega o valor do campo "Outro" se ele for selecionado
     const doencaFinal = form.doencaSelect === 'Outro' ? form.doencaOutro : form.doencaSelect;
     const tratFinal = form.tratSelect === 'Outro' ? form.tratOutro : form.tratSelect;
-
+    // Obrigatioriedade de preenchimento
     if (!form.petId || !form.funcId || !doencaFinal || !tratFinal) {
       return alert("Preencha todos os campos da consulta!");
     }
 
+    // JSON da nova consulta
     const novaConsulta = {
       id: form.id || Date.now(),
       data: new Date().toLocaleDateString(),
@@ -37,6 +38,7 @@ export default function Consultas() {
       tratamento: tratFinal
     };
 
+    // Se o ID não for passado cria uma nova.
     if (form.id) {
       salvar(consultas.map(c => c.id === form.id ? novaConsulta : c));
     } else {
@@ -58,13 +60,13 @@ export default function Consultas() {
           {pets.map(p => <option key={p.id} value={p.id}>{p.nome}</option>)}
         </select>
         
-        {/* Select de Funcionários (Agora puxa todo mundo!) */}
+        {/* Select de Funcionários */}
         <select value={form.funcId} onChange={e => setForm({...form, funcId: e.target.value})} style={{ padding: '12px', borderRadius: '8px', border: '1px solid #cceeee' }}>
           <option value="">Profissional Responsável...</option>
           {funcs.map(f => <option key={f.id} value={f.id}>{f.nome} - {f.cargo}</option>)}
         </select>
 
-        {/* Select de Doenças com campo "Outro" */}
+        {/* Select de Doenças */}
         <select value={form.doencaSelect} onChange={e => setForm({...form, doencaSelect: e.target.value})} style={{ padding: '12px', borderRadius: '8px', border: '1px solid #cceeee' }}>
           <option value="">Diagnóstico...</option>
           <option value="Virose">Virose</option>
@@ -75,7 +77,7 @@ export default function Consultas() {
         </select>
         {form.doencaSelect === 'Outro' && <input type="text" placeholder="Qual doença?" value={form.doencaOutro} onChange={e => setForm({...form, doencaOutro: e.target.value})} />}
 
-        {/* Select de Tratamentos com campo "Outro" */}
+        {/* Select de Tratamentos */}
         <select value={form.tratSelect} onChange={e => setForm({...form, tratSelect: e.target.value})} style={{ padding: '12px', borderRadius: '8px', border: '1px solid #cceeee' }}>
           <option value="">Tratamento...</option>
           <option value="Vacinação">Vacinação</option>

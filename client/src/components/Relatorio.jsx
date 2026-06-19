@@ -4,14 +4,14 @@ export default function Relatorio() {
   const [relatorio, setRelatorio] = useState([]);
 
   useEffect(() => {
-    // 1. Puxa os dados das 3 entidades
+    // Puxa os dados
     const consultas = JSON.parse(localStorage.getItem('listaClinicaConsultas')) || [];
     const pets = JSON.parse(localStorage.getItem('listaClinicaPets')) || [];
     const funcs = JSON.parse(localStorage.getItem('listaClinicaFuncsV2')) || [];
 
-    // 2. O JOIN EXIGIDO NA RUBRICA (Cruza as informações)
+
     const dadosCruzados = consultas.map(consulta => {
-      // Encontra o pet e o funcionário pelo ID correspondente
+      // Encontra o pet e o funcionário pelo ID
       const pet = pets.find(p => p.id === consulta.petId);
       const medico = funcs.find(f => f.id === consulta.funcId);
 
@@ -26,13 +26,13 @@ export default function Relatorio() {
       };
     });
 
-    // 3. Salva no estado para exibir na tela
+    // Salva no estado para exibir na tela
     setRelatorio(dadosCruzados);
   }, []);
 
   return (
     <div>
-      <h3>Prontuários e Histórico Clínico (JOIN)</h3>
+      <h3>Prontuários e Histórico Clínico</h3>
       <table>
         <thead>
           <tr>

@@ -9,7 +9,7 @@ export default function Login({ onLogin }) {
     e.preventDefault(); // Evita que a página recarregue ao enviar o formulário
     
     try {
-      // Faz a requisição para o seu servidor rodando na porta 3001
+      // Faz a requisição para o servidor
       const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
         headers: {
@@ -21,11 +21,11 @@ export default function Login({ onLogin }) {
       const data = await response.json();
 
       if (response.ok) {
-        // Se o login der certo, salva no localStorage (que o App.jsx já está procurando)
+        // Se o login der certo, salva no localStorage
         localStorage.setItem('usuarioLogado', data.token);
-        onLogin(true); // Avisa o App.jsx para liberar o acesso da "catraca"
+        onLogin(true); // Liberar a tranca do login
       } else {
-        // Se der erro (ex: senha incorreta), mostra a mensagem
+        // Mensagem de erro de login
         setErro(data.error || 'E-mail ou senha incorretos.');
       }
     } catch (error) {

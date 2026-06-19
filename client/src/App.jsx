@@ -21,13 +21,13 @@ export default function App() {
     setIsLoggedIn(false);
   };
 
-  // A "Catraca": Se não estiver logado, mostra APENAS a tela de login
+  // Trava da tela de login.
   if (!isLoggedIn) {
     // Passando o setIsLoggedIn diretamente para o Login.jsx
     return <Login onLogin={setIsLoggedIn} />;
   }
 
-  // Se passou da catraca, renderiza o sistema completo
+  // Se passou da trava, carrega o sistema completo
   return (
     <div className="app-container">
       <header style={{ display: 'flex', flexDirection: 'column', padding: '10px 20px', backgroundColor: '#333', color: 'white' }}>

@@ -15,7 +15,7 @@ export default function Funcionarios() {
   const [funcs, setFuncs] = useState([]);
   const [form, setForm] = useState({ id: null, nome: '', cargoSelect: '', cargoOutro: '' });
 
-  // Popula com dados iniciais para não parecer que o arquivo está faltando
+  // Popula a lista
   useEffect(() => {
     const dadosSalvos = JSON.parse(localStorage.getItem('listaClinicaFuncsV2'));
     if (dadosSalvos && dadosSalvos.length > 0) {
